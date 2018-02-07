@@ -1,0 +1,65 @@
+<style>
+    .vertical-center {
+        margin-top: 10%;
+    }
+</style>
+<section id="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="container">
+                <h2 class="text-center">Registration</h2>
+                <div class="vertical-center">
+                    <div class="col-xs-12 col-sm-6 col-md-offset-4 col-md-4">
+                        <form name="myForm">
+                            <div class="form-group">
+                                <div class="text-border">
+                                    <label for="userName">User Name</label>
+                                    <input type="text" class="form-control" id="userName" name="userName" title="Please fill out this field" ng-model="userName"
+                                        capitalize-first ng-pattern="/^[a-zA-Z][a-zA-Z. ]{1,50}$/"
+                                        maxlength="50" ng-maxlength="50" required>
+                                </div>
+                                <span class="help-inline left" style="color:red" ng-show="myForm.submitted&&myForm.userName.$error.required
+                                                                                        ||  myForm.userName.$touched && myForm.userName.$error.required
+                                                                                        ||  myForm.userName.$dirty && myForm.userName.$error.required">User name is required</span>
+                                <span style="color:red" ng-show="myForm.userName.$error.pattern">Please enter the valid user name</span>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="text-border">
+                                    <label for="password">New Password</label>
+                                    <input type="password" id="password" class="form-control" name="password" ng-model="password" minlength="8" ng-minlength="8"
+                                        ng-maxlength="20" maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"
+                                        required />
+                                </div>
+                                <span style="color:red" ng-show="myForm.submitted&&myForm.password.$error.required || myForm.password.$touched && myForm.password.$error.required
+                                    || myForm.password.$dirty && myForm.password.$error.required"> Password is required</span>
+
+                                <span style="color:red" ng-if="!myForm.password.$error.required && (myForm.password.$error.minlength || myForm.password.$error.maxlength) &&
+                                    myForm.password.$dirty" ng-hide="passwordNotMatched">Password must be between 8 to 20 characters.</span>
+
+                                <span style="color:red" ng-if="!myForm.password.$error.required && !myForm.password.$error.minlength && !myForm.password.$error.maxlength &&
+                                    myForm.password.$error.pattern && myForm.password.$dirty" ng-hide="passwordNotMatched">Password should at least contain 1 uppercase,1 lowercase,1 special character or 1 number</span>
+                            </div>
+                            <div class="form-group">
+                                <div class="text-border">
+                                    <label for="password_c">Confirm Password</label>
+                                    <input type="password" id="password_c" name="password_c" class="form-control" ng-model="password_c" minlength="8" ng-minlength="8"
+                                        ng-maxlength="20" maxlength="20" ng-change="CheckConfirmPassword()" required />
+                                </div>
+                                <span style="color:red" ng-show="myForm.submitted&&myForm.password_c.$error.required || myForm.password_c.$touched && myForm.password_c.$error.required
+                                    || myForm.password_c.$dirty && myForm.password_c.$error.required"> Password is required</span>
+                                <span style="color:red" ng-if="passwordNotMatched" ng-hide="myForm.submitted&&myForm.password_c.$error.required || myForm.password_c.$touched && myForm.password_c.$error.required
+                                    || myForm.password_c.$dirty && myForm.password_c.$error.required">Password not Matched</span>
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" 
+                            ng-click="rgisterUser()" ng-disabled="myForm.password.$error.required ||
+                            passwordNotMatched || myForm.password_c.$error.required || myForm.userName.$error.required">Sign up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
