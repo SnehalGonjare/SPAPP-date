@@ -3,22 +3,71 @@
         <div class="card">
             <div class="container">
                 <h2 class="text-center">Hi, WelCome</h2>
-                <div class="panel panel-default">
+                <div class="panel panel-default padding20">
                     <div class="row">
-                        <div class="col-sm-6 col-xs-12">
-                            <!--<zingchart id="myChart" zc-json="myJson" zc-height=500 zc-width=600></zingchart>-->
+                        <div class="col-sm-5 col-xs-12">
+                            <div class="col-sm-5 col-md-4 col-xs-12 text-left">
+                                <label>Date Helper Filter</label>
+                            </div>
+                            <div class="col-sm-6 col-md-8 col-xs-12">
+                                <select class="padding5" ng-model="dateFilterHelper" ng-change="getDates(dateFilterHelper)" 
+                                name="dateFilterHelper" ng-options="dateFilterHelper for dateFilterHelper in dateFilterHelperList"
+                                    title="select date filter helper">
+                                    <option value="" disabled> Select Date Filter </option>
+                                    <!--<option ng-repeat="dateFilterHelper in dateFilterHelperList" value="{{dateFilterHelperList[0]}}"
+                                            >{{dateFilterHelper}}</option>-->
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <!--<zingchart id="myChart1" zc-json="myJson1" zc-height=500 zc-width=600></zingchart>-->
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 col-xs-12"><br/>
+                            <div class="col-sm-5 col-md-4 col-xs-12 text-left">
+                                <label>Start Date </label>
+                            </div>
+                            <div class="col-sm-6 col-md-8 col-xs-12">
+                                <div class="fg-line text-border">
+                                    <input type="text" class="form-control paddingL" id="startDate" name="startDate" ng-model="startDate | date:'yyyy-MM-dd'"
+                                        ng-disabled="true">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <!--<zingchart id="myChart2" zc-json="myJson2" zc-height=500 zc-width=600></zingchart>-->
+                        <div class="col-sm-5 col-xs-12"><br/>
+                            <div class="col-sm-5 col-md-4 col-xs-12 text-left">
+                                <label>End Date</label>
+                            </div>
+                            <div class="col-sm-6 col-md-8 col-xs-12">
+                                <div class="fg-line text-border">
+                                    <input type="text" class="form-control paddingL" id="endDate" name="endDate" ng-model="endDate | date:'yyyy-MM-dd'"
+                                        ng-disabled="true">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <!--<zingchart id="myChart3" zc-json="myJson3" zc-height=500 zc-width=600></zingchart>-->
+                        <div class="col-sm-2 col-xs-12"><br/>
+                            <button class="btn btn-md btn-primary btn-block" type="submit" ng-click="searchResult()" ng-disabled="!startDate || !endDate">Search</button>
                         </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <!--<zingchart id="myChart4" zc-json="myJson4" zc-height=500 zc-width=600></zingchart>-->
+                    </div>
+                </div>
+                </br>
+                <div class="panel panel-default" ng-hide="showData">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12"><br/>
+                            <div class="table-responsive table-borderd" >
+                                <table class="table scroll">
+                                    <thead>
+                                        <tr>
+                                            <th class="blueClr text-center">Scheme Name</th>
+                                            <th class="blueClr text-center">Scheme Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="schemeList in searchList">
+                                            <td class="text-center">{{schemeList.schemeName}}</td>
+                                            <td class="text-center">{{schemeList.value}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

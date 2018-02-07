@@ -1,4 +1,4 @@
-var myApp = angular.module('SPApp', ['ui.router', 'ngFileUpload', 'zingchart-angularjs']);
+var myApp = angular.module('SPApp', ['ui.router']);
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
